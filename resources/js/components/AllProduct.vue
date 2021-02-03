@@ -16,12 +16,10 @@
                 <td>{{ product.id }}</td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.detail }}</td>
-                <td>
-                    <!-- <div class="btn-group" role="group"> -->
+                <td class="d-flex">
                     <router-link :to="{name: 'show', params: { id: product.id }}" class="btn btn-success mr-2 rounded">Show</router-link>
                     <router-link :to="{name: 'edit', params: { id: product.id }}" class="btn btn-primary mr-2 rounded">Edit</router-link>
                     <button class="btn btn-danger rounded" @click="deleteProduct(product.id)">Delete</button>
-                    <!-- </div> -->
                 </td>
             </tr>
             </tbody>

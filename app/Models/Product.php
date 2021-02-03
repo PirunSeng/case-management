@@ -12,5 +12,9 @@ class Product extends Model
     protected $fillable = [
         'name', 
         'detail'
-    ];  
+    ];
+
+    public function product_info() {
+        return $this->name . ' ' . $this->detail;
+    }
 }
