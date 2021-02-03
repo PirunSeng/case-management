@@ -53,9 +53,8 @@ class ClientsController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Client $client)
     {
-        $client = Client::findOrFail($id);
         return view('clients.show', compact('client'));
     }
 
@@ -65,10 +64,8 @@ class ClientsController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Client $client)
     {
-        $client = Client::find($id);
-        // dd($client);
         return view('clients.edit', compact('client'));
     }
     /**

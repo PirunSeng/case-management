@@ -11,6 +11,8 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+    // before_action :authenticate_user
     public function __construct()
     {
         $this->middleware('auth');

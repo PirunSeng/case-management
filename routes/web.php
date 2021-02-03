@@ -16,7 +16,7 @@ use App\Http\Controllers\ClientsController;
 
 Route::get('/', [ClientsController::class, 'index']);
 
-// Auth::routes();
+Auth::routes();
 
 Route::resource('clients', ClientsController::class);
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
