@@ -3,9 +3,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,9 +19,7 @@ class ClientsController extends Controller
      */
     public function index()
     {
-        $clients = Client::latest()->paginate(1);
-        // dd($clients);
-
+        $clients = Auth::user()->clients()->latest()->paginate(1);
         return view('clients.index', compact('clients'));
     }
 
@@ -37,6 +41,8 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::user()->id;
+        $request->request->add(['user_id' => $user_id]);
         $request->validate([
             'name' => 'required'
         ]);
@@ -53,8 +59,9 @@ class ClientsController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show($id)
     {
+        $client = Auth::user()->clients()->findOrFail($id);
         return view('clients.show', compact('client'));
     }
 
@@ -64,8 +71,9 @@ class ClientsController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit($id)
     {
+        $client = Auth::user()->clients()->findOrFail($id);
         return view('clients.edit', compact('client'));
     }
     /**
@@ -75,8 +83,9 @@ class ClientsController extends Controller
      * @param  \App\Models\client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, $id)
     {
+        $client = Auth::user()->clients()->findOrFail($id);
         $request->validate([
             'name' => 'required'
         ]);
@@ -91,8 +100,9 @@ class ClientsController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy($id)
     {
+        $client = Auth::user()->clients()->findOrFail($id);
         $client->delete();
 
         return redirect()->route('clients.index')

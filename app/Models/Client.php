@@ -11,13 +11,9 @@ class Client extends Model
 
     protected $fillable = [
         'name',
-        'slug'
+        'slug',
+        'user_id'
     ];
-
-    public function clients()
-    {
-        return $this->hasMany(Client::class);
-    }
 
     public function user()
     {
