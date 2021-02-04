@@ -5,23 +5,23 @@ import ShowProduct from './components/ShowProduct.vue';
  
 export const routes = [
     {
-        name: 'home',
-        path: '/',
+        name: 'product_list',
+        path: '/products',
         component: AllProduct
     },
     {
-        name: 'create',
-        path: '/create',
+        name: 'product_create',
+        path: '/products/create',
         component: CreateProduct
     },
     {
-        name: 'edit',
-        path: '/edit/:id',
+        name: 'product_edit',
+        path: '/products/edit/:id',
         component: EditProduct
     },
     {
-        name: 'show',
-        path: '/:id',
+        name: 'product_show',
+        path: '/products/:id',
         component: ShowProduct
     }
 ];

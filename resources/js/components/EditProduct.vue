@@ -38,7 +38,7 @@
                 this.axios
                     .patch(`http://localhost:8000/api/products/${this.$route.params.id}`, this.product)
                     .then((res) => {
-                        this.$router.push({ name: 'home' });
+                        this.$router.push({ name: 'product_list' });
                     });
             }
         }

@@ -51,7 +51,7 @@
       @endforeach
     </table>
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-lg-12">
         {{ $clients->links() }}
       </div>
     </div>

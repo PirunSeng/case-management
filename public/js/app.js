@@ -1860,6 +1860,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
 
 /***/ }),
@@ -1978,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.post('http://localhost:8000/api/products', this.product).then(function (response) {
         return _this.$router.push({
-          name: 'home'
+          name: 'product_list'
         });
       })["catch"](function (err) {
         return console.log(err);
@@ -2042,7 +2043,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.axios.patch("http://localhost:8000/api/products/".concat(this.$route.params.id), this.product).then(function (res) {
         _this2.$router.push({
-          name: 'home'
+          name: 'product_list'
         });
       });
     }
@@ -2073,6 +2074,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2082,6 +2086,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
+    console.log('params: ', this.$route.params);
     this.axios.get("http://localhost:8000/api/products/".concat(this.$route.params.id)).then(function (res) {
       _this.product = res.data;
     });
@@ -2120,7 +2125,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_4__.default({
   routes: _routes__WEBPACK_IMPORTED_MODULE_3__.routes
 });
 var app = new Vue({
-  el: '#app',
+  el: '#app-vue',
   router: router,
   render: function render(h) {
     return h(_App_vue__WEBPACK_IMPORTED_MODULE_0__.default);
@@ -2193,20 +2198,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  name: 'home',
-  path: '/',
+  name: 'product_list',
+  path: '/products',
   component: _components_AllProduct_vue__WEBPACK_IMPORTED_MODULE_0__.default
 }, {
-  name: 'create',
-  path: '/create',
+  name: 'product_create',
+  path: '/products/create',
   component: _components_CreateProduct_vue__WEBPACK_IMPORTED_MODULE_1__.default
 }, {
-  name: 'edit',
-  path: '/edit/:id',
+  name: 'product_edit',
+  path: '/products/edit/:id',
   component: _components_EditProduct_vue__WEBPACK_IMPORTED_MODULE_2__.default
 }, {
-  name: 'show',
-  path: '/:id',
+  name: 'product_show',
+  path: '/products/:id',
   component: _components_ShowProduct_vue__WEBPACK_IMPORTED_MODULE_3__.default
 }];
 
@@ -37941,8 +37946,17 @@ var render = function() {
               { staticClass: "navbar-nav" },
               [
                 _c(
+                  "a",
+                  { staticClass: "nav-item nav-link", attrs: { href: "/" } },
+                  [_vm._v("Clients List")]
+                ),
+                _vm._v(" "),
+                _c(
                   "router-link",
-                  { staticClass: "nav-item nav-link", attrs: { to: "/" } },
+                  {
+                    staticClass: "nav-item nav-link",
+                    attrs: { to: "/products" }
+                  },
                   [_vm._v("Products List")]
                 ),
                 _vm._v(" "),
@@ -37950,7 +37964,7 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "nav-item nav-link",
-                    attrs: { to: "/create" }
+                    attrs: { to: "/products/create" }
                   },
                   [_vm._v("Create Product")]
                 )
@@ -38013,7 +38027,9 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "btn btn-success mr-2 rounded",
-                    attrs: { to: { name: "show", params: { id: product.id } } }
+                    attrs: {
+                      to: { name: "product_show", params: { id: product.id } }
+                    }
                   },
                   [_vm._v("Show")]
                 ),
@@ -38022,7 +38038,9 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "btn btn-primary mr-2 rounded",
-                    attrs: { to: { name: "edit", params: { id: product.id } } }
+                    attrs: {
+                      to: { name: "product_edit", params: { id: product.id } }
+                    }
                   },
                   [_vm._v("Edit")]
                 ),
@@ -38300,7 +38318,24 @@ var render = function() {
     _vm._v(" "),
     _c("p", [_vm._v("Name: " + _vm._s(_vm.product.name))]),
     _vm._v(" "),
-    _c("p", [_vm._v("Detail: " + _vm._s(_vm.product.detail))])
+    _c("p", [_vm._v("Detail: " + _vm._s(_vm.product.detail))]),
+    _vm._v(" "),
+    _c(
+      "p",
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "btn btn-primary mr-2 rounded",
+            attrs: {
+              to: { name: "product_edit", params: { id: _vm.product.id } }
+            }
+          },
+          [_vm._v("Edit")]
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []

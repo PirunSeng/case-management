@@ -17,8 +17,8 @@
                 <td>{{ product.name }}</td>
                 <td>{{ product.detail }}</td>
                 <td class="d-flex">
-                    <router-link :to="{name: 'show', params: { id: product.id }}" class="btn btn-success mr-2 rounded">Show</router-link>
-                    <router-link :to="{name: 'edit', params: { id: product.id }}" class="btn btn-primary mr-2 rounded">Edit</router-link>
+                    <router-link :to="{name: 'product_show', params: { id: product.id }}" class="btn btn-success mr-2 rounded">Show</router-link>
+                    <router-link :to="{name: 'product_edit', params: { id: product.id }}" class="btn btn-primary mr-2 rounded">Edit</router-link>
                     <button class="btn btn-danger rounded" @click="deleteProduct(product.id)">Delete</button>
                 </td>
             </tr>
